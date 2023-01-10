@@ -31,5 +31,3 @@ class Hashmap:
         bucket_list = self.list[bucket]
         if key in bucket_list:
             bucket_list.remove(key)
-
-
