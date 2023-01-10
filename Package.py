@@ -1,3 +1,4 @@
+# create class to hold packages
 class Package:
     def __init__(self, id, address, city, state, zip_code, deadline, weight, status):
         self.id = id
@@ -19,6 +20,7 @@ class Package:
                                                        self.state, self.zip_code, self.deadline,
                                                        self.weight, self.status, self.start_time, self.delivered_time)
 
+# Checks if a status is delivered at a specified time.
     def check_delivered(self, current_time):
         if self.delivered_time < current_time:
             self.status = "Delivered"

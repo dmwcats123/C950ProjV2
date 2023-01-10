@@ -1,10 +1,11 @@
-
+# Create Hashmap Class
 class Hashmap:
     def __init__(self, initial_capacity=20):
         self.list = []
         for i in range(initial_capacity):
             self.list.append([])
 
+# Insert a key, item pair into the hashmap
     def insert(self, key, item):
         bucket = hash(key) % len(self.list)
         bucket_list = self.list[bucket]
@@ -18,6 +19,7 @@ class Hashmap:
         bucket_list.append(key_value)
         return True
 
+# Lookup a key and return the item if it is in the hashmap
     def lookup(self, key):
         bucket = hash(key) % len(self.list)
         bucket_list = self.list[bucket]
@@ -26,6 +28,7 @@ class Hashmap:
                 return pair[1]
         return None
 
+# Remove an item from the map with the matching key
     def remove(self, key):
         bucket = hash(key) % len(self.list)
         bucket_list = self.list[bucket]

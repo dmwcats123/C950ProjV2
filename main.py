@@ -20,6 +20,7 @@ with open("CSV/Packages.csv") as csv_package_data:
 package_hashmap = Hashmap()
 
 
+# Loads the package data from the CSV into a hashmap using ID at the key
 def load_packages_to_hash(file):
     with open(file) as package_data:
         package_list = csv.reader(package_data)
@@ -37,6 +38,7 @@ def load_packages_to_hash(file):
             package_hashmap.insert(id, package_object)
 
 
+#manually load trucks
 truck_one = Truck(16, 18, None, [1, 13, 14, 15, 16, 20, 29, 30, 31, 34, 37, 40], "4001 South 700 East",
                   datetime.timedelta(hours=8))
 truck_two = Truck(16, 18, None, [3, 6, 12, 17, 18, 19, 21, 22, 23, 24, 26, 27, 35, 36, 38, 39],
@@ -48,6 +50,7 @@ truck_three = Truck(16, 18, None, [2, 4, 5, 6, 7, 8, 9, 10, 11, 25, 28, 32, 33],
 trucks = [truck_one, truck_two, truck_three]
 
 
+#Simulate delivery of the packages on the trucks
 def deliver_packages():
     for truck in trucks:
         unsorted_copy = []
@@ -70,14 +73,14 @@ def deliver_packages():
             next_package.delivered_time = truck.time
 
 
-
+# index the addresses from the csv file by the id numbers
 def index_address(address):
-
     for row in csv_address:
         if address in row[2]:
             return int(row[0])
 
 
+# determine the distance between two addresses based on their index
 def distance_between(addressIndexOne, addressIndexTwo):
     distance = csv_distance[addressIndexOne][addressIndexTwo]
     if distance == '':
@@ -88,6 +91,8 @@ def distance_between(addressIndexOne, addressIndexTwo):
 load_packages_to_hash("csv/Packages.csv")
 deliver_packages()
 
+
+#CLI is implemented in Main
 class Main:
     print("Total Mileage: " + str(truck_one.mileage + truck_two.mileage + truck_three.mileage))
     print("\nWGUPS\n")

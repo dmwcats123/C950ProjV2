@@ -1,3 +1,4 @@
+#Create Truck Class
 class Truck:
     def __init__(self, capacity, speed, load, packages, address, depart_time):
         self.capacity=capacity
