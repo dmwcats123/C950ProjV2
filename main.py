@@ -35,7 +35,7 @@ def load_packages_to_hash(file):
             weight = package[6]
             status = "At Hub"
 
-            package_object = Package(id, address, city, state, zip_code, deadline, weight, status)
+            package_object = Package(id, state, city, deadline, zip_code, weight, address, status)
             package_hashmap.insert(id, package_object)
 
 
