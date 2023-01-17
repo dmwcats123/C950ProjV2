@@ -1,3 +1,5 @@
+
+
 # Create Hashmap Class
 class Hashmap:
     def __init__(self, initial_capacity=20):
@@ -5,7 +7,7 @@ class Hashmap:
         for i in range(initial_capacity):
             self.list.append([])
 
-# Insert a key, item pair into the hashmap
+# Insert a item pair into the hashmap
     def insert(self, key, item):
         bucket = hash(key) % len(self.list)
         bucket_list = self.list[bucket]

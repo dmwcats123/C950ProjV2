@@ -20,8 +20,8 @@ with open("CSV/Packages.csv") as csv_package_data:
 package_hashmap = Hashmap()
 
 
-# Loads the package data from the CSV into a hashmap using ID at the key
-#Time Complexity O(n) Space Complexity O(n)
+# Loads the package data from the CSV into a hashmap associating the key with the id
+#Time Complexity - linear - O(n) Space Complexity - linear - O(n)
 def load_packages_to_hash(file):
     with open(file) as package_data:
         package_list = csv.reader(package_data)
@@ -39,21 +39,25 @@ def load_packages_to_hash(file):
             package_hashmap.insert(id, package_object)
 
 
-#manually load trucks
-#Time complexity O(1) Space Complexity O(1)
-truck_one = Truck(16, 18, None, [1, 13, 14, 15, 16, 20, 29, 30, 31, 34, 37, 40], "4001 South 700 East",
-                  datetime.timedelta(hours=8))
-truck_two = Truck(16, 18, None, [3, 6, 12, 17, 18, 19, 21, 22, 23, 24, 26, 27, 35, 36, 38, 39],
-                  "4001 South 700 East", datetime.timedelta(hours=10, minutes=20))
 
-truck_three = Truck(16, 18, None, [2, 4, 5, 6, 7, 8, 9, 10, 11, 25, 28, 32, 33], "4001 South 700 East",
-                    datetime.timedelta(hours=9, minutes=5))
+load_one =[1, 13, 14, 15, 16, 20, 29, 30, 31, 34, 37, 40]
+load_two =[3, 6, 12, 17, 18, 19, 21, 22, 23, 24, 26, 27, 35, 36, 38, 39]
+load_three = [2, 4, 5, 6, 7, 8, 9, 10, 11, 25, 28, 32, 33]
+
+start_address = "4001 South 700 East"
+
+#manually load trucks
+#Time complexity - constant - O(1) Space Complexity - constant - O(1)
+truck_one = Truck(datetime.timedelta(hours=8), 16, 18, None, load_one, start_address)
+truck_two = Truck(datetime.timedelta(hours=10, minutes=20), 16, 18, None, load_two, start_address)
+
+truck_three = Truck(datetime.timedelta(hours=9, minutes=5), 16, 18, None, load_three, start_address)
 
 trucks = [truck_one, truck_two, truck_three]
 
 
 #Simulate delivery of the packages on the trucks
-#Time Complexity O(n^2) Space Complexity O(n)
+#Time Complexity - non linear -  O(n^2) Space Complexity - linear - O(n)
 def deliver_packages():
     for truck in trucks:
         unsorted_copy = []
@@ -85,7 +89,7 @@ def index_address(address):
 
 
 # determine the distance between two addresses based on their index
-# time complexity O(1) Space complexity O(1)
+# time complexity - constant - O(1) Space complexity - constant - O(1)
 def distance_between(addressIndexOne, addressIndexTwo):
     distance = csv_distance[addressIndexOne][addressIndexTwo]
     if distance == '':
@@ -98,7 +102,7 @@ deliver_packages()
 
 
 #CLI is implemented in Main
-# time complexity O(n) space complexity O(n)
+# time complexity - linear -O(n) space complexity - linear - O(n)
 class Main:
     print("Total Mileage: " + str(truck_one.mileage + truck_two.mileage + truck_three.mileage))
     print("\nWGUPS\n")
